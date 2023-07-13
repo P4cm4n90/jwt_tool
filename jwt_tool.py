@@ -362,7 +362,7 @@ def injectpayloadclaim(payloadclaim, injectionvalue):
 def injectheaderclaim(headerclaim, injectionvalue):
     new_head_dict = headDict
     temp_value = castInput(injectionvalue)
-    if new_head_dict.has_key(headerclaim):
+    if headerclaim in new_head_dict:
         if type(new_head_dict[headerclaim]) is not OrderedDict:
             new_head_dict[headerclaim] = temp_value
         else:
