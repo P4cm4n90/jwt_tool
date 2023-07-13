@@ -362,21 +362,22 @@ def injectpayloadclaim(payloadclaim, injectionvalue):
 def injectheaderclaim(headerclaim, injectionvalue):
     new_head_dict = headDict
     temp_value = castInput(injectionvalue)
-    test = new_head_dict[headerclaim]
-
-    if type(new_head_dict[headerclaim]) is not OrderedDict:
-        new_head_dict[headerclaim] = temp_value
-    else:
-        # Check if provided value is json or value
-        if type(temp_value) is dict:
-            #if injection value is json assing all of the json
-            prev_head_value = headDict[headerclaim]
-            for key in temp_value:
-                prev_head_value[key] = temp_value[key]
-    
-            new_head_dict = prev_head_value
-        else:
+    if new_head_dict.has_key(headerclaim):
+        if type(new_head_dict[headerclaim]) is not OrderedDict:
             new_head_dict[headerclaim] = temp_value
+        else:
+            # Check if provided value is json or value
+            if type(temp_value) is dict:
+                #if injection value is json assing all of the json
+                prev_head_value = headDict[headerclaim]
+                for key in temp_value:
+                    prev_head_value[key] = temp_value[key]
+
+                new_head_dict = prev_head_value
+            else:
+                new_head_dict[headerclaim] = temp_value
+    else:
+        new_head_dict[headerclaim] = injectionvalue
 
 
     newHeadB64 = base64.urlsafe_b64encode(json.dumps(new_head_dict, separators=(",", ":")).encode()).decode(
