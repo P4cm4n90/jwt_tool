@@ -362,7 +362,9 @@ def injectpayloadclaim(payloadclaim, injectionvalue):
 def injectheaderclaim(headerclaim, injectionvalue):
     new_head_dict = headDict
     temp_value = castInput(injectionvalue)
-    if type(new_head_dict[headerclaim]) is not dict:
+    test = new_head_dict[headerclaim]
+
+    if type(new_head_dict[headerclaim]) is not OrderedDict:
         new_head_dict[headerclaim] = temp_value
     else:
         # Check if provided value is json or value
