@@ -373,7 +373,7 @@ def injectheaderclaim(headerclaim, injectionvalue):
                 for key in temp_value:
                     prev_head_value[key] = temp_value[key]
 
-                new_head_dict = prev_head_value
+                new_head_dict[headerclaim] = prev_head_value
             else:
                 new_head_dict[headerclaim] = temp_value
     else:
