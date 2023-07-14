@@ -377,7 +377,7 @@ def injectheaderclaim(headerclaim, injectionvalue):
             else:
                 new_head_dict[headerclaim] = temp_value
     else:
-        new_head_dict[headerclaim] = injectionvalue
+        new_head_dict[headerclaim] = temp_value
 
 
     newHeadB64 = base64.urlsafe_b64encode(json.dumps(new_head_dict, separators=(",", ":")).encode()).decode(
